@@ -72,6 +72,7 @@ yell "# ------------------------------------------------------------------------
 # ------------------------------------------------------------------------------"
 
 # Warn if not root
+# 运行该脚本需要root权限
 ID=$(id -u)
 if [ "x$ID" != "x0" ]; then
     warn "Some tests might require root to run"
@@ -79,6 +80,7 @@ if [ "x$ID" != "x0" ]; then
 fi
 
 # Total Score
+# Docker Bench自定义记分规则
 # Warn Scored -1, Pass Scored +1, Not Score -0
 
 totalChecks=0
@@ -88,8 +90,10 @@ logit "Initializing $(date)\n"
 beginjson "1.3.4" "$(date +%s)"
 
 # Load all the tests from tests/ and run them
+# 加载所有的检测脚本
 main () {
   # List all running containers
+  # 列出所有运行中的容器
   if [ -z "$exclude" ]; then
     containers=$(docker ps | sed '1d' | awk '{print $NF}')
   else
@@ -97,6 +101,7 @@ main () {
     containers=$(docker ps | sed '1d' | awk '{print $NF}' | grep -Ev "$pattern" )
   fi
   # If there is a container with label docker_bench_security, memorize it:
+  
   benchcont="nil"
   for c in $containers; do
     if docker inspect --format '{{ .Config.Labels }}' "$c" | \
