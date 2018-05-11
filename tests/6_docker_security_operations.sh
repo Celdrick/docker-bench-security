@@ -2,12 +2,12 @@
 
 check_6() {
   logit "\n"
-  info "6 - Docker Security Operations"
+  info "6 - docker安全操作"
 }
 
 # 6.1
 check_6_1() {
-  check_6_1="6.1  - Avoid image sprawl"
+  check_6_1="6.1  - 避免镜像蔓延"
   totalChecks=$((totalChecks + 1))
   images=$(docker images -q | sort -u | wc -l | awk '{print $1}')
   active_images=0
@@ -30,7 +30,7 @@ check_6_1() {
 
 # 6.2
 check_6_2() {
-  check_6_2="6.2  - Avoid container sprawl"
+  check_6_2="6.2  -避免容器蔓延"
   totalChecks=$((totalChecks + 1))
   total_containers=$(docker info 2>/dev/null | grep "Containers" | awk '{print $2}')
   running_containers=$(docker ps -q | wc -l | awk '{print $1}')

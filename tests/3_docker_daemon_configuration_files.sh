@@ -2,12 +2,12 @@
 
 check_3() {
   logit "\n"
-  info "3 - Docker daemon configuration files"
+  info "3 - docker守护程序文件配置"
 }
 
 # 3.1
 check_3_1() {
-  check_3_1="3.1  - Ensure that docker.service file ownership is set to root:root"
+  check_3_1="3.1  - 设置docker.service文件的所有权为root:root"
   totalChecks=$((totalChecks + 1))
   file="$(get_systemd_service_file docker.service)"
   if [ -f "$file" ]; then
@@ -31,7 +31,7 @@ check_3_1() {
 
 # 3.2
 check_3_2() {
-  check_3_2="3.2  - Ensure that docker.service file permissions are set to 644 or more restrictive"
+  check_3_2="3.2  - 设置docker.service文件权限为644或更多限制性"
   totalChecks=$((totalChecks + 1))
   file="$(get_systemd_service_file docker.service)"
   if [ -f "$file" ]; then
@@ -55,7 +55,7 @@ check_3_2() {
 
 # 3.3
 check_3_3() {
-  check_3_3="3.3  - Ensure that docker.socket file ownership is set to root:root"
+  check_3_3="3.3  - 设置docker.socket文件所有权为root：root"
   totalChecks=$((totalChecks + 1))
   file="$(get_systemd_service_file docker.socket)"
   if [ -f "$file" ]; then
@@ -79,7 +79,7 @@ check_3_3() {
 
 # 3.4
 check_3_4() {
-  check_3_4="3.4  - Ensure that docker.socket file permissions are set to 644 or more restrictive"
+  check_3_4="3.4  - 设置docker.socket文件权限为644或更多限制性"
   totalChecks=$((totalChecks + 1))
   file="$(get_systemd_service_file docker.socket)"
   if [ -f "$file" ]; then
@@ -103,7 +103,7 @@ check_3_4() {
 
 # 3.5
 check_3_5() {
-  check_3_5="3.5  - Ensure that /etc/docker directory ownership is set to root:root"
+  check_3_5="3.5  - 设置/etc/docker目录所有权为root：root"
   totalChecks=$((totalChecks + 1))
   directory="/etc/docker"
   if [ -d "$directory" ]; then
@@ -127,7 +127,7 @@ check_3_5() {
 
 # 3.6
 check_3_6() {
-  check_3_6="3.6  - Ensure that /etc/docker directory permissions are set to 755 or more restrictive"
+  check_3_6="3.6  - 设置/etc/docker目录权限为755或更多限制性"
   totalChecks=$((totalChecks + 1))
   directory="/etc/docker"
   if [ -d "$directory" ]; then
@@ -151,7 +151,7 @@ check_3_6() {
 
 # 3.7
 check_3_7() {
-  check_3_7="3.7  - Ensure that registry certificate file ownership is set to root:root"
+  check_3_7="3.7  - 设置仓库证书文件所有权为root：root"
   totalChecks=$((totalChecks + 1))
   directory="/etc/docker/certs.d/"
   if [ -d "$directory" ]; then
@@ -182,7 +182,7 @@ check_3_7() {
 
 # 3.8
 check_3_8() {
-  check_3_8="3.8  - Ensure that registry certificate file permissions are set to 444 or more restrictive"
+  check_3_8="3.8  - 设置仓库证书文件权限为444或更多限制性"
   totalChecks=$((totalChecks + 1))
   directory="/etc/docker/certs.d/"
   if [ -d "$directory" ]; then
@@ -213,7 +213,7 @@ check_3_8() {
 
 # 3.9
 check_3_9() {
-  check_3_9="3.9  - Ensure that TLS CA certificate file ownership is set to root:root"
+  check_3_9="3.9  - 设置TLS CA证书文件所有权为root：root"
   totalChecks=$((totalChecks + 1))
   if ! [ -z $(get_docker_configuration_file_args 'tlscacert') ]; then
     tlscacert=$(get_docker_configuration_file_args 'tlscacert')
@@ -241,7 +241,7 @@ check_3_9() {
 
 # 3.10
 check_3_10() {
-  check_3_10="3.10 - Ensure that TLS CA certificate file permissions are set to 444 or more restrictive"
+  check_3_10="3.10 - 设置TLS CA证书文件权限为444或更多限制性"
   totalChecks=$((totalChecks + 1))
   if ! [ -z $(get_docker_configuration_file_args 'tlscacert') ]; then
     tlscacert=$(get_docker_configuration_file_args 'tlscacert')
@@ -269,7 +269,7 @@ check_3_10() {
 
 # 3.11
 check_3_11() {
-  check_3_11="3.11 - Ensure that Docker server certificate file ownership is set to root:root"
+  check_3_11="3.11 - 设置docker服务器证书文件所有权为root：root"
   totalChecks=$((totalChecks + 1))
   if ! [ -z $(get_docker_configuration_file_args 'tlscert') ]; then
     tlscert=$(get_docker_configuration_file_args 'tlscert')
@@ -297,7 +297,7 @@ check_3_11() {
 
 # 3.12
 check_3_12() {
-  check_3_12="3.12 - Ensure that Docker server certificate file permissions are set to 444 or more restrictive"
+  check_3_12="3.12 - 设置docker服务器证书文件权限为444或更多限制"
   totalChecks=$((totalChecks + 1))
   if ! [ -z $(get_docker_configuration_file_args 'tlscert') ]; then
     tlscert=$(get_docker_configuration_file_args 'tlscert')
@@ -325,7 +325,7 @@ check_3_12() {
 
 # 3.13
 check_3_13() {
-  check_3_13="3.13 - Ensure that Docker server certificate key file ownership is set to root:root"
+  check_3_13="3.13 - 设置docker服务器证书密钥文件所有权为root：root"
   totalChecks=$((totalChecks + 1))
   if ! [ -z $(get_docker_configuration_file_args 'tlskey') ]; then
     tlskey=$(get_docker_configuration_file_args 'tlskey')
@@ -353,7 +353,7 @@ check_3_13() {
 
 # 3.14
 check_3_14() {
-  check_3_14="3.14 - Ensure that Docker server certificate key file permissions are set to 400"
+  check_3_14="3.14 - 设置docker服务器证书密钥文件权限为400"
   totalChecks=$((totalChecks + 1))
   if ! [ -z $(get_docker_configuration_file_args 'tlskey') ]; then
     tlskey=$(get_docker_configuration_file_args 'tlskey')
@@ -381,7 +381,7 @@ check_3_14() {
 
 # 3.15
 check_3_15() {
-  check_3_15="3.15 - Ensure that Docker socket file ownership is set to root:docker"
+  check_3_15="3.15 - 设置docker.sock文件所有权为root：docker"
   totalChecks=$((totalChecks + 1))
   file="/var/run/docker.sock"
   if [ -S "$file" ]; then
@@ -405,7 +405,7 @@ check_3_15() {
 
 # 3.16
 check_3_16() {
-  check_3_16="3.16 - Ensure that Docker socket file permissions are set to 660 or more restrictive"
+  check_3_16="3.16 - 设置docker.sock文件权限为660或更多限制性"
   totalChecks=$((totalChecks + 1))
   file="/var/run/docker.sock"
   if [ -S "$file" ]; then
@@ -429,7 +429,7 @@ check_3_16() {
 
 # 3.17
 check_3_17() {
-  check_3_17="3.17 - Ensure that daemon.json file ownership is set to root:root"
+  check_3_17="3.17 - 设置daemon.json文件所有权为root：root"
   totalChecks=$((totalChecks + 1))
   file="/etc/docker/daemon.json"
   if [ -f "$file" ]; then
@@ -453,7 +453,7 @@ check_3_17() {
 
 # 3.18
 check_3_18() {
-  check_3_18="3.18 - Ensure that daemon.json file permissions are set to 644 or more restrictive"
+  check_3_18="3.18 - 设置daemon.json文件权限为644或更多限制性"
   totalChecks=$((totalChecks + 1))
   file="/etc/docker/daemon.json"
   if [ -f "$file" ]; then
@@ -477,7 +477,7 @@ check_3_18() {
 
 # 3.19
 check_3_19() {
-  check_3_19="3.19 - Ensure that /etc/default/docker file ownership is set to root:root"
+  check_3_19="3.19 - 设置/etc/default/docker文件所有权为root：root"
   totalChecks=$((totalChecks + 1))
   file="/etc/default/docker"
   if [ -f "$file" ]; then
@@ -501,7 +501,7 @@ check_3_19() {
 
 # 3.20
 check_3_20() {
-  check_3_20="3.20 - Ensure that /etc/default/docker file permissions are set to 644 or more restrictive"
+  check_3_20="3.20 - 设置/etc/default/docker文件权限为644或更多限制性"
   totalChecks=$((totalChecks + 1))
   file="/etc/default/docker"
   if [ -f "$file" ]; then

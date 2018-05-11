@@ -2,7 +2,7 @@
 
 check_5() {
 logit "\n"
-info "5  - Container Runtime"
+info "5  - 容器运行时"
 }
 
 check_running_containers() {
@@ -24,7 +24,7 @@ check_5_1() {
     return
   fi
 
-  check_5_1="5.1  - Ensure AppArmor Profile is Enabled"
+  check_5_1="5.1  - 启用AppArmor配置文件"
   totalChecks=$((totalChecks + 1))
 
   fail=0
@@ -60,7 +60,7 @@ check_5_2() {
     return
   fi
 
-  check_5_2="5.2  - Ensure SELinux security options are set, if applicable"
+  check_5_2="5.2  - 设置SElinux安全选项"
   totalChecks=$((totalChecks + 1))
 
   fail=0
@@ -96,7 +96,7 @@ check_5_3() {
     return
   fi
 
-  check_5_3="5.3  - Ensure Linux Kernel Capabilities are restricted within containers"
+  check_5_3="5.3  -  linux内核功能在容器内受限"
   totalChecks=$((totalChecks + 1))
 
   fail=0
@@ -135,7 +135,7 @@ check_5_4() {
     return
   fi
 
-  check_5_4="5.4  - Ensure privileged containers are not used"
+  check_5_4="5.4  - 不使用特权容器"
   totalChecks=$((totalChecks + 1))
 
   fail=0
@@ -171,7 +171,7 @@ check_5_5() {
     return
   fi
 
-  check_5_5="5.5  - Ensure sensitive host system directories are not mounted on containers"
+  check_5_5="5.5  - 敏感的主机系统目录未挂载在容器上"
   totalChecks=$((totalChecks + 1))
 
   # List of sensitive directories to test for. Script uses new-lines as a separator.
@@ -227,7 +227,7 @@ check_5_6() {
     return
   fi
 
-  check_5_6="5.6  - Ensure ssh is not run within containers"
+  check_5_6="5.6  - SSH不在容器中运行"
   totalChecks=$((totalChecks + 1))
 
   fail=0
@@ -277,7 +277,7 @@ check_5_7() {
     return
   fi
 
-  check_5_7="5.7  - Ensure privileged ports are not mapped within containers"
+  check_5_7="5.7  - 特权端口禁止映射到容器内"
   totalChecks=$((totalChecks + 1))
 
   fail=0
@@ -317,7 +317,7 @@ check_5_8() {
     return
   fi
 
-  check_5_8="5.8  - Ensure only needed ports are open on the container"
+  check_5_8="5.8  - 只有需要的端口在容器上打开"
   totalChecks=$((totalChecks + 1))
   note "$check_5_8"
   logjson "5.8" "NOTE"
@@ -330,7 +330,7 @@ check_5_9() {
     return
   fi
 
-  check_5_9="5.9  - Ensure the host's network namespace is not shared"
+  check_5_9="5.9  - 不共享主机的网络命名空间"
   totalChecks=$((totalChecks + 1))
 
   fail=0
@@ -366,7 +366,7 @@ check_5_10() {
     return
   fi
 
-  check_5_10="5.10 - Ensure memory usage for container is limited"
+  check_5_10="5.10 - 确保容器的内存使用量有限"
   totalChecks=$((totalChecks + 1))
 
   fail=0
@@ -406,7 +406,7 @@ check_5_11() {
     return
   fi
 
-  check_5_11="5.11 - Ensure CPU priority is set appropriately on the container"
+  check_5_11="5.11 - 正确设置容器上的CPU优先级"
   totalChecks=$((totalChecks + 1))
 
   fail=0
@@ -446,7 +446,7 @@ check_5_12() {
     return
   fi
 
-  check_5_12="5.12 - Ensure the container's root filesystem is mounted as read only"
+  check_5_12="5.12 - 设置容器的根文件系统为只读"
   totalChecks=$((totalChecks + 1))
 
   fail=0
@@ -482,7 +482,7 @@ check_5_13() {
     return
   fi
 
-  check_5_13="5.13 -  Ensure incoming container traffic is binded to a specific host interface"
+  check_5_13="5.13 -  确保进入容器的流量绑定到特定的主机接口"
   totalChecks=$((totalChecks + 1))
 
   fail=0
@@ -518,7 +518,7 @@ check_5_14() {
     return
   fi
 
-  check_5_14="5.14 - Ensure 'on-failure' container restart policy is set to '5'"
+  check_5_14="5.14 - 容器重启策略on-failure设置为5"
   totalChecks=$((totalChecks + 1))
 
   fail=0
@@ -554,7 +554,7 @@ check_5_15() {
     return
   fi
 
-  check_5_15="5.15 - Ensure the host's process namespace is not shared"
+  check_5_15="5.15 - 确保主机的进程命名空间不共享"
   totalChecks=$((totalChecks + 1))
 
   fail=0
@@ -590,7 +590,7 @@ check_5_16() {
     return
   fi
 
-  check_5_16="5.16 - Ensure the host's IPC namespace is not shared"
+  check_5_16="5.16 - 主机的IPC命令空间不共享"
   totalChecks=$((totalChecks + 1))
 
   fail=0
@@ -626,7 +626,7 @@ check_5_17() {
     return
   fi
 
-  check_5_17="5.17 - Ensure host devices are not directly exposed to containers"
+  check_5_17="5.17 - 主机设备不直接暴露于容器"
   totalChecks=$((totalChecks + 1))
 
   fail=0
@@ -662,7 +662,7 @@ check_5_18() {
     return
   fi
 
-  check_5_18="5.18 - Ensure the default ulimit is overwritten at runtime, only if needed"
+  check_5_18="5.18 - 设置默认的ulimit配置（在需要时）"
   totalChecks=$((totalChecks + 1))
 
   fail=0
@@ -698,7 +698,7 @@ check_5_19() {
     return
   fi
 
-  check_5_19="5.19 - Ensure mount propagation mode is not set to shared"
+  check_5_19="5.19 - 设置装载传播模式不共享"
   totalChecks=$((totalChecks + 1))
 
   fail=0
@@ -733,7 +733,7 @@ check_5_20() {
     return
   fi
 
-  check_5_20="5.20 - Ensure the host's UTS namespace is not shared"
+  check_5_20="5.20 - 设置主机的UTS命令空间不共享"
   totalChecks=$((totalChecks + 1))
 
   fail=0
@@ -769,7 +769,7 @@ check_5_21() {
     return
   fi
 
-  check_5_21="5.21 - Ensure the default seccomp profile is not Disabled"
+  check_5_21="5.21 - 设置默认的seccomp配置文件未禁用"
   totalChecks=$((totalChecks + 1))
 
   fail=0
@@ -804,7 +804,7 @@ check_5_22() {
     return
   fi
 
-  check_5_22="5.22 - Ensure docker exec commands are not used with privileged option"
+  check_5_22="5.22 - docker exec命令不能使用特权选项"
   totalChecks=$((totalChecks + 1))
   note "$check_5_22"
   logjson "5.22" "NOTE"
@@ -817,7 +817,7 @@ check_5_23() {
     return
   fi
 
-  check_5_23="5.23 - Ensure docker exec commands are not used with user option"
+  check_5_23="5.23 - docker exec命令不能与用户选项一起使用"
   totalChecks=$((totalChecks + 1))
   note "$check_5_23"
   logjson "5.23" "NOTE"
@@ -830,7 +830,7 @@ check_5_24() {
     return
   fi
 
-  check_5_24="5.24 - Ensure cgroup usage is confirmed"
+  check_5_24="5.24 - 确保cgroug使用情况得到确认"
   totalChecks=$((totalChecks + 1))
 
   fail=0
@@ -865,7 +865,7 @@ check_5_25() {
   if [ "$running_containers" -ne 1 ]; then
     return
   fi
-  check_5_25="5.25 - Ensure the container is restricted from acquiring additional privileges"
+  check_5_25="5.25 - 限制容器获得额为的权限"
   totalChecks=$((totalChecks + 1))
 
   fail=0
@@ -899,7 +899,7 @@ check_5_26() {
     return
   fi
 
-  check_5_26="5.26 - Ensure container health is checked at runtime"
+  check_5_26="5.26 - 检查容器运行时状态"
   totalChecks=$((totalChecks + 1))
 
   fail=0
@@ -931,7 +931,7 @@ check_5_27() {
     return
   fi
 
-  check_5_27="5.27 - Ensure docker commands always get the latest version of the image"
+  check_5_27="5.27 - 确保docker命令始终获取最新版本的镜像"
   totalChecks=$((totalChecks + 1))
   info "$check_5_27"
   logjson "5.27" "INFO"
@@ -944,7 +944,7 @@ check_5_28() {
     return
   fi
 
-  check_5_28="5.28 - Ensure PIDs cgroup limit is used"
+  check_5_28="5.28 - 限制使用PID cgroup"
   totalChecks=$((totalChecks + 1))
 
   fail=0
@@ -980,7 +980,7 @@ check_5_29() {
     return
   fi
 
-  check_5_29="5.29 - Ensure Docker's default bridge docker0 is not used"
+  check_5_29="5.29 - 不要使用docker的默认网桥docker0"
   totalChecks=$((totalChecks + 1))
 
   fail=0
@@ -1028,7 +1028,7 @@ check_5_30() {
     return
   fi
 
-  check_5_30="5.30 - Ensure the host's user namespaces is not shared"
+  check_5_30="5.30 - 不共享主机的用户命名空间"
   totalChecks=$((totalChecks + 1))
 
   fail=0
@@ -1062,7 +1062,7 @@ check_5_31() {
     return
   fi
 
-  check_5_31="5.31 - Ensure the Docker socket is not mounted inside any containers"
+  check_5_31="5.31 - 任何容器内不能安装docker套接字"
   totalChecks=$((totalChecks + 1))
 
   fail=0

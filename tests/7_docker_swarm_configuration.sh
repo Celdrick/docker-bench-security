@@ -2,12 +2,12 @@
 
 check_7() {
   logit "\n"
-  info "7 - Docker Swarm Configuration"
+  info "7 - docker集群配置"
 }
 
 # 7.1
 check_7_1() {
-  check_7_1="7.1  - Ensure swarm mode is not Enabled, if not needed"
+  check_7_1="7.1  - 不启用群集模式"
   totalChecks=$((totalChecks + 1))
   if docker info 2>/dev/null | grep -e "Swarm:*\sinactive\s*" >/dev/null 2>&1; then
     pass "$check_7_1"
@@ -22,7 +22,7 @@ check_7_1() {
 
 # 7.2
 check_7_2() {
-  check_7_2="7.2  - Ensure the minimum number of manager nodes have been created in a swarm"
+  check_7_2="7.2  - 在群集中最小数量创建管理器节点"
   totalChecks=$((totalChecks + 1))
   if docker info 2>/dev/null | grep -e "Swarm:*\sactive\s*" >/dev/null 2>&1; then
     managernodes=$(docker node ls | grep -c "Leader")
@@ -44,7 +44,7 @@ check_7_2() {
 
 # 7.3
 check_7_3() {
-  check_7_3="7.3  - Ensure swarm services are binded to a specific host interface"
+  check_7_3="7.3  - 群集服务绑定到特定的主机接口"
   totalChecks=$((totalChecks + 1))
   if docker info 2>/dev/null | grep -e "Swarm:*\sactive\s*" >/dev/null 2>&1; then
     ss -lnt | grep -e '\[::]:2377 ' -e ':::2377' -e '*:2377 ' -e ' 0\.0\.0\.0:2377 ' >/dev/null 2>&1
@@ -66,7 +66,7 @@ check_7_3() {
 
 # 7.4
 check_7_4(){
-  check_7_4="7.4  - Ensure data exchanged between containers are encrypted on different nodes on the overlay network"
+  check_7_4="7.4  - 容器之前交换的数据在覆盖网络上的不同节点上就行加密"
   totalChecks=$((totalChecks + 1))
   if docker network ls --filter driver=overlay --quiet | \
     xargs docker network inspect --format '{{.Name}} {{ .Options }}' 2>/dev/null | \
@@ -89,7 +89,7 @@ check_7_4(){
 
 # 7.5
 check_7_5() {
-  check_7_5="7.5  - Ensure Docker's secret management commands are used for managing secrets in a Swarm cluster"
+  check_7_5="7.5  - docker的秘密管理命令用户管理Swarm集群中的秘密"
   totalChecks=$((totalChecks + 1))
   if docker info 2>/dev/null | grep -e "Swarm:\s*active\s*" >/dev/null 2>&1; then
     if [ "$(docker secret ls -q | wc -l)" -ge 1 ]; then
@@ -110,7 +110,7 @@ check_7_5() {
 
 # 7.6
 check_7_6() {
-  check_7_6="7.6  - Ensure swarm manager is run in auto-lock mode"
+  check_7_6="7.6  - swarm manager在自动锁定模式下运行"
   totalChecks=$((totalChecks + 1))
   if docker info 2>/dev/null | grep -e "Swarm:\s*active\s*" >/dev/null 2>&1; then
     if ! docker swarm unlock-key 2>/dev/null | grep 'SWMKEY' 2>/dev/null 1>&2; then
@@ -131,7 +131,7 @@ check_7_6() {
 
 # 7.7
 check_7_7() {
-  check_7_7="7.7  - Ensure swarm manager auto-lock key is rotated periodically"
+  check_7_7="7.7  - swarm manager自动锁定键被周期性的轮换"
   totalChecks=$((totalChecks + 1))
   if docker info 2>/dev/null | grep -e "Swarm:\s*active\s*" >/dev/null 2>&1; then
     note "$check_7_7"
@@ -146,7 +146,7 @@ check_7_7() {
 
 # 7.8
 check_7_8() {
-  check_7_8="7.8  - Ensure node certificates are rotated as appropriate"
+  check_7_8="7.8  - 节点证书适当轮换"
   totalChecks=$((totalChecks + 1))
   if docker info 2>/dev/null | grep -e "Swarm:\s*active\s*" >/dev/null 2>&1; then
     if docker info 2>/dev/null | grep "Expiry Duration: 2 days"; then
@@ -167,7 +167,7 @@ check_7_8() {
 
 # 7.9
 check_7_9() {
-  check_7_9="7.9  - Ensure CA certificates are rotated as appropriate"
+  check_7_9="7.9  - CA根证书根据需要进行轮换"
   totalChecks=$((totalChecks + 1))
   if docker info 2>/dev/null | grep -e "Swarm:\s*active\s*" >/dev/null 2>&1; then
     info "$check_7_9"
@@ -182,7 +182,7 @@ check_7_9() {
 
 # 7.10
 check_7_10() {
-  check_7_10="7.10 - Ensure management plane traffic has been separated from data plane traffic"
+  check_7_10="7.10 - 管理平面流量与数据平面流量分离"
   totalChecks=$((totalChecks + 1))
   if docker info 2>/dev/null | grep -e "Swarm:\s*active\s*" >/dev/null 2>&1; then
     info "$check_7_10"

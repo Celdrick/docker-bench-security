@@ -2,12 +2,12 @@
 
 check_2() {
   logit "\n"
-  info "2 - Docker daemon configuration"
+  info "2 - docker守护进程配置"
 }
 
 # 2.1
 check_2_1() {
-  check_2_1="2.1  - Ensure network traffic is restricted between containers on the default bridge"
+  check_2_1="2.1  - 限制默认网桥上容器之间的网络流量"
   totalChecks=$((totalChecks + 1))
   if get_docker_effective_command_line_args '--icc' | grep false >/dev/null 2>&1; then
     pass "$check_2_1"
@@ -26,7 +26,7 @@ check_2_1() {
 
 # 2.2
 check_2_2() {
-  check_2_2="2.2  - Ensure the logging level is set to 'info'"
+  check_2_2="2.2  - 设置日志级别为info"
   totalChecks=$((totalChecks + 1))
   if get_docker_configuration_file_args 'log-level' >/dev/null 2>&1; then
     if get_docker_configuration_file_args 'log-level' | grep info >/dev/null 2>&1; then
@@ -61,7 +61,7 @@ check_2_2() {
 
 # 2.3
 check_2_3() {
-  check_2_3="2.3  - Ensure Docker is allowed to make changes to iptables"
+  check_2_3="2.3  - 允许docker更改IPtables"
   totalChecks=$((totalChecks + 1))
   if get_docker_effective_command_line_args '--iptables' | grep "false" >/dev/null 2>&1; then
     warn "$check_2_3"
@@ -80,7 +80,7 @@ check_2_3() {
 
 # 2.4
 check_2_4() {
-  check_2_4="2.4  - Ensure insecure registries are not used"
+  check_2_4="2.4  - 不使用不安全的镜像仓库"
   totalChecks=$((totalChecks + 1))
   if get_docker_effective_command_line_args '--insecure-registry' | grep "insecure-registry" >/dev/null 2>&1; then
     warn "$check_2_4"
@@ -105,7 +105,7 @@ check_2_4() {
 
 # 2.5
 check_2_5() {
-  check_2_5="2.5  - Ensure aufs storage driver is not used"
+  check_2_5="2.5  - 不使用aufs存储驱动程序"
   totalChecks=$((totalChecks + 1))
   if docker info 2>/dev/null | grep -e "^Storage Driver:\s*aufs\s*$" >/dev/null 2>&1; then
     warn "$check_2_5"
@@ -120,7 +120,7 @@ check_2_5() {
 
 # 2.6
 check_2_6() {
-  check_2_6="2.6  - Ensure TLS authentication for Docker daemon is configured"
+  check_2_6="2.6  - docker守护进程配置TLS身份认证"
   totalChecks=$((totalChecks + 1))
   if grep -i 'tcp://' "$CONFIG_FILE" 2>/dev/null 1>&2; then
     if [ $(get_docker_configuration_file_args '"tls":' | grep 'true') ] || \
@@ -171,7 +171,7 @@ check_2_6() {
 
 # 2.7
 check_2_7() {
-  check_2_7="2.7  - Ensure the default ulimit is configured appropriately"
+  check_2_7="2.7  - 配置合适的ulimit"
   totalChecks=$((totalChecks + 1))
   if get_docker_configuration_file_args 'default-ulimit' | grep -v '{}' >/dev/null 2>&1; then
     pass "$check_2_7"
@@ -191,7 +191,7 @@ check_2_7() {
 
 # 2.8
 check_2_8() {
-  check_2_8="2.8  - Enable user namespace support"
+  check_2_8="2.8  -启用用户命名空间"
   totalChecks=$((totalChecks + 1))
   if get_docker_configuration_file_args 'userns-remap' | grep -v '""'; then
     pass "$check_2_8"
@@ -210,7 +210,7 @@ check_2_8() {
 
 # 2.9
 check_2_9() {
-  check_2_9="2.9  - Ensure the default cgroup usage has been confirmed"
+  check_2_9="2.9  - 使用默认cgroup"
   totalChecks=$((totalChecks + 1))
   if get_docker_configuration_file_args 'cgroup-parent' | grep -v '""'; then
     warn "$check_2_9"
@@ -231,7 +231,7 @@ check_2_9() {
 
 # 2.10
 check_2_10() {
-  check_2_10="2.10 - Ensure base device size is not changed until needed"
+  check_2_10="2.10 - 基础设备的大小在需要之前不会更改"
   totalChecks=$((totalChecks + 1))
   if get_docker_configuration_file_args 'storage-opts' | grep "dm.basesize" >/dev/null 2>&1; then
     warn "$check_2_10"
@@ -250,7 +250,7 @@ check_2_10() {
 
 # 2.11
 check_2_11() {
-  check_2_11="2.11 - Ensure that authorization for Docker client commands is enabled"
+  check_2_11="2.11 - 启用docker客户端命令的授权"
   totalChecks=$((totalChecks + 1))
   if get_docker_configuration_file_args 'authorization-plugins' | grep -v '\[]'; then
     pass "$check_2_11"
@@ -269,7 +269,7 @@ check_2_11() {
 
 # 2.12
 check_2_12() {
-  check_2_12="2.12 - Ensure centralized and remote logging is configured"
+  check_2_12="2.12 - 配置集中和远程日志记录"
   totalChecks=$((totalChecks + 1))
   if docker info --format '{{ .LoggingDriver }}' | grep 'json-file' >/dev/null 2>&1; then
     warn "$check_2_12"
@@ -284,7 +284,7 @@ check_2_12() {
 
 # 2.13
 check_2_13() {
-  check_2_13="2.13 - Ensure operations on legacy registry (v1) are Disabled"
+  check_2_13="2.13 - 禁用旧仓库版本（v1）上的操作"
   totalChecks=$((totalChecks + 1))
   if get_docker_configuration_file_args 'disable-legacy-registry' | grep 'true' >/dev/null 2>&1; then
     pass "$check_2_13"
@@ -303,7 +303,7 @@ check_2_13() {
 
 # 2.14
 check_2_14() {
-  check_2_14="2.14 - Ensure live restore is Enabled"
+  check_2_14="2.14 - 启用实时恢复"
   totalChecks=$((totalChecks + 1))
   if docker info 2>/dev/null | grep -e "Live Restore Enabled:\s*true\s*" >/dev/null 2>&1; then
     pass "$check_2_14"
@@ -328,7 +328,7 @@ check_2_14() {
 
 # 2.15
 check_2_15() {
-  check_2_15="2.15 - Ensure Userland Proxy is Disabled"
+  check_2_15="2.15 - 禁用userland代理"
   totalChecks=$((totalChecks + 1))
   if get_docker_configuration_file_args 'userland-proxy' | grep false >/dev/null 2>&1; then
     pass "$check_2_15"
@@ -347,7 +347,7 @@ check_2_15() {
 
 # 2.16
 check_2_16() {
-  check_2_16="2.16 - Ensure daemon-wide custom seccomp profile is applied, if needed"
+  check_2_16="2.16 - 应用守护进程范围的自定义seccomp配置文件"
   totalChecks=$((totalChecks + 1))
   if docker info --format '{{ .SecurityOptions }}' | grep 'name=seccomp,profile=default' 2>/dev/null 1>&2; then
     pass "$check_2_16"
@@ -362,7 +362,7 @@ check_2_16() {
 
 # 2.17
 check_2_17() {
-  check_2_17="2.17 - Ensure experimental features are avoided in production"
+  check_2_17="2.17 - 生产中避免实验性功能"
   totalChecks=$((totalChecks + 1))
   if docker version -f '{{.Server.Experimental}}' | grep false 2>/dev/null 1>&2; then
     pass "$check_2_17"
@@ -377,7 +377,7 @@ check_2_17() {
 
 # 2.18
 check_2_18() {
-  check_2_18="2.18 - Ensure containers are restricted from acquiring new privileges"
+  check_2_18="2.18 - 限制容器获取新的权限"
   totalChecks=$((totalChecks + 1))
   if get_docker_effective_command_line_args '--no-new-privileges' | grep "no-new-privileges" >/dev/null 2>&1; then
     pass "$check_2_18"
